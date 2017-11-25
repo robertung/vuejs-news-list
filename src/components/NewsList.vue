@@ -1,7 +1,8 @@
 <template>
   <div class="newslist">
-    <div class="loader-wrapper" v-if="loader">
+    <div class="loader-wrapper" v-show="loader">
       <h2>Loading News...</h2>
+      <img class="spinner" src="static/Spinner.svg">
     </div>
     <div class="container">
       <ul class="media-list">
@@ -60,6 +61,10 @@ export default {
     width:100%;
     height:100%;
     background: rgba(0,0,0,0.7);
+  }
+  .spinner {
+    width:100px;
+    margin:0 0 0 -1px;
   }
   h2{
     color:#ccc;
