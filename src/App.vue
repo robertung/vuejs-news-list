@@ -1,9 +1,7 @@
 <template>
   <div id="app">
-    <!-- <div class="container"> -->
       <SourceSelection v-on:sourceChanged="sourceChanged"></SourceSelection>
       <NewsList v-bind:source="source"></NewsList>
-    <!-- </div> -->
   </div>
 </template>
 
@@ -19,11 +17,11 @@ export default {
   },
   data() {
     return {
-      source: "",
+      source: ''
     }
   },
   methods:{
-    sourceChanged: function ( source ) {
+    sourceChanged ( source ) {
         this.source = source;
     }
   }
@@ -31,9 +29,9 @@ export default {
 </script>
 
 <style>
+@import 'https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css';
 #app {
   font-family:Raleway,Helvetica Neue,Helvetica,Arial,sans-serif;
-  /*padding:20px 0 0;*/
 }
 
 </style>

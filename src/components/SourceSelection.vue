@@ -9,7 +9,6 @@
             <option value="">Select your news poison ...</option>
             <option v-bind:value="source.id" v-for="source in sources">{{ source.name }}</option>
           </select>
-
           <div v-if="source">
             <h6>{{source.description}}</h6>
             <a v-bind:href="source.url" class="btn btn-primary" target="_blank">Go To {{source.name}} Website</a>
@@ -30,22 +29,20 @@ export default {
     }
   },
   methods: {
-    sourceChanged : function (e) {
+    sourceChanged (e) {
+      console.log(e);
       for( var i = 0; i < this.sources.length; i++ ){
         if( this.sources[i].id == e.target.value ){
             this.source = this.sources[i];
         }
       }
-      // ^ iterate my sources list from API news below.
       this.$emit('sourceChanged', e.target.value );
     }
   },
-  created: function () {
-    this.$http.get('https://newsapi.org/v1/sources?language=en')
+  created () {
+    return this.axios.get('https://newsapi.org/v1/sources?language=en')
       .then( response => {
         this.sources = response.data.sources;
-        // console.log(this.sources.length);
-        // Store sources array here in a object
       });
   }
 }

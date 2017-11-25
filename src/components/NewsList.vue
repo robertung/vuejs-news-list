@@ -1,7 +1,9 @@
 <template>
   <div class="newslist">
+    <div class="loader-wrapper" v-if="loader">
+      <h2>Loading News...</h2>
+    </div>
     <div class="container">
-
       <ul class="media-list">
         <li class="media" v-for="article in articles">
           <div class="media-left">
@@ -27,30 +29,41 @@ export default {
   props: ['source'],
   data () {
     return {
-      articles: []
+      articles: [],
+      loader: null
     }
   },
   methods: {
-    updateSource: function (source) {
-      this.$http.get('https://newsapi.org/v1/articles?source=' + source + '&apiKey=e67adf5ff6794072b71ad461f55f6177')
+    updateSource (source) {
+      this.loader = true;
+      return this.axios.get('https://newsapi.org/v1/articles?source=' + source + '&apiKey=e67adf5ff6794072b71ad461f55f6177')
        .then(response => {
          this.articles = response.data.articles;
+         this.loader = false;
        });
     }
   },
-  created: function () {
-    this.updateSource(this.source);
-  },
   watch: {
-    source: function (val) {
+    source (val) {
       this.updateSource(val);
     }
   }
 }
 </script>
 
-<!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
+  .loader-wrapper{
+    text-align: center;
+    position: absolute;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+    background: rgba(0,0,0,0.7);
+  }
+  h2{
+    color:#ccc;
+  }
   .media-object {
     width: 128px;
     padding: 10px;
