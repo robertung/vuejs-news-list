@@ -37,7 +37,7 @@ export default {
   methods: {
     updateSource (source) {
       this.loader = true;
-      return this.axios.get('https://newsapi.org/v1/articles?source=' + source + '&apiKey=e67adf5ff6794072b71ad461f55f6177')
+      this.axios.get('https://newsapi.org/v1/articles?source=' + source + '&apiKey=e67adf5ff6794072b71ad461f55f6177')
        .then(response => {
          this.articles = response.data.articles;
          this.loader = false;
@@ -48,6 +48,9 @@ export default {
     source (val) {
       this.updateSource(val);
     }
+  },
+  created () {
+    console.log(this);
   }
 }
 </script>

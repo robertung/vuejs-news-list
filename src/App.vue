@@ -1,19 +1,22 @@
 <template>
   <div id="app">
-      <SourceSelection v-on:sourceChanged="sourceChanged"></SourceSelection>
-      <NewsList v-bind:source="source"></NewsList>
+      <!-- <SourceSelection v-on:sourceChanged="sourceChanged"></SourceSelection> -->
+      <!-- <NewsList v-bind:source="source"></NewsList> -->
+      <test></test>
+
   </div>
 </template>
 
 <script>
 import SourceSelection from './components/SourceSelection'
 import NewsList from './components/NewsList'
-
+import Test from './components/Test'
 export default {
   name: 'app',
   components: {
     SourceSelection,
-    NewsList
+    NewsList,
+    Test
   },
   data() {
     return {
@@ -33,5 +36,10 @@ export default {
 #app {
   font-family:Raleway,Helvetica Neue,Helvetica,Arial,sans-serif;
 }
-
+.label {
+  color:black;
+}
+.error{
+  color:red;
+}
 </style>
